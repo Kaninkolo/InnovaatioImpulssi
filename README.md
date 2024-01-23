@@ -10,6 +10,8 @@ Ryhmä 2
 
 # Scrum-syklin yleiskuvaus
 
+Scrum on ohjelmiston kehitysprosessi, joka korostaa iteratiivista ja inkrementaalista kehitystä.
+
 ### 1. Sprintit
 - Aikarajoitettuja kehitysjaksoja. Sprintin aikana kehitetään projektia.
 
