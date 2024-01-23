@@ -10,5 +10,6 @@ Ryhmä 2
 
 # Scrum-syklin yleiskuvaus
 
-- 1. Sprintit
+### 1. Sprintit
+- Aikarajoitettuja kehitysjaksoja. Sprintin aikana kehitetään projektia.
 
