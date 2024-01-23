@@ -6,3 +6,9 @@ Ryhmä 2
 - lisätty
 
 - TestTest
+
+
+# Scrum-syklin yleiskuvaus
+
+- 1. Sprintit
+
