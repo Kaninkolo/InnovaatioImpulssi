@@ -13,3 +13,4 @@ Ryhmä 2
 ### 1. Sprintit
 - Aikarajoitettuja kehitysjaksoja. Sprintin aikana kehitetään projektia.
 
+- 2. Testi
