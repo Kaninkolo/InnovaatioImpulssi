@@ -12,3 +12,4 @@ Ryhmä 2
 
 - 1. Sprintit
 
+- 2. Testi
