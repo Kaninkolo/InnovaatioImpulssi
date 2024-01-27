@@ -19,4 +19,7 @@ Scrum on ohjelmiston kehitysprosessi, joka korostaa iteratiivista ja inkrementaa
 - Työjonot määrittelevät tehtävät ja niiden etenemisen. Tavallisesti käytetään seuraavia työjonoja: "To do", "In Progress", "Review", ja "Done".
 
 ### 3. Roolit
-- Roolit ovat kaikille annettu oma osuus kehitystyöstä
+- Roolit jaetaan yksilöittäin jotta kaikki tietävät oman kehitysosuuden
+
+### 4. Kokoukset
+- Kokouksia pidetään jotta voidaan käydä läpi missä vaiheessa kaikki ovat ja minkälaisia ongelmia on tullut ilmi
