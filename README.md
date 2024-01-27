@@ -23,3 +23,6 @@ Scrum on ohjelmiston kehitysprosessi, joka korostaa iteratiivista ja inkrementaa
 
 ### 4. Kokoukset
 - Kokouksia pidetään jotta voidaan käydä läpi missä vaiheessa kaikki ovat ja minkälaisia ongelmia on tullut ilmi
+
+### 5. Miksi Scrum toimii?
+- Kun aikataulu sekä työtehtävä on selkeä ja tiedetään että tehtävä ei muutu syklin aikana voidaan keskittyä paremmin kehittämiseen
