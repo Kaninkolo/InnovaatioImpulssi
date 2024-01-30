@@ -1,5 +1,5 @@
 # InnovaatioImpulssi
-Ryhmä 2 
+Ryhmä 2: Innovaatioimpulssi
 
 ## Development branch
 
