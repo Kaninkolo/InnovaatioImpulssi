@@ -89,23 +89,58 @@ Käyttäjätarinoita:
 
 ## Tietokanta
 
-Järjestelmään säilöttävä ja siinä käsiteltävät tiedot ja niiden väliset suhteet
-kuvataan käsitekaaviolla. Käsitemalliin sisältyy myös taulujen välisten viiteyhteyksien ja avainten
-määritykset. Tietokanta kuvataan käyttäen jotain kuvausmenetelmää, joko ER-kaaviota ja UML-luokkakaaviota.
+### Relaatiokaavio
 
-Lisäksi kukin järjestelmän tietoelementti ja sen attribuutit kuvataan
-tietohakemistossa. Tietohakemisto tarkoittaa yksinkertaisesti vain jokaisen elementin (taulun) ja niiden
-attribuuttien (kentät/sarakkeet) listausta ja lyhyttä kuvausta esim. tähän tyyliin:
+![alt text](https://raw.githubusercontent.com/Kaninkolo/InnovaatioImpulssi/development/ticketguru_uml.png "TicketGuru UML")
 
-> ### _Tilit_
-> _Tilit-taulu sisältää käyttäjätilit. Käyttäjällä voi olla monta tiliä. Tili kuuluu aina vain yhdelle käyttäjälle._
+### Tietohakemistokuvaukset
+
+> ### Tapahtuma
+> Tapahtuma-taulu sisältää tapahtumatiedot. Lipputyypillä on yksi siihen tapahtuma, tapahtumalla voi olla monta lipputyyppiä.
 >
 > Kenttä | Tyyppi | Kuvaus
 > ------ | ------ | ------
-> id | int PK | Tilin id
-> nimimerkki | varchar(30) |  Tilin nimimerkki
-> avatar | int FK | Tilin avatar, viittaus [avatar](#Avatar)-tauluun
-> kayttaja | int FK | Viittaus käyttäjään [käyttäjä](#Kayttaja)-taulussa
+> tapahtuma_id | int PK | Tapahtuman id
+> pvm | datetime |  Tapahtuman päivämäärä
+> sijainti | varchar(40) | Tapahtuman osoitetiedot
+> kuvaus | varchar(150) | Tapahtuman kuvaus
+>
+> ### Lipputyyppi
+> Lipputyyppi-taulu sisältää tapahtuma- ja hintaryhmäkohtaiset hintatiedot. Lipputyyppi liittyy vain yhteen tapahtumaan ja lippuun kerrallaan.
+>
+> Kenttä | Tyyppi | Kuvaus
+> ------ | ------ | ------
+> tyyppi_id | int PK | Lipputyypin id
+> tapahtuma_id | int FK |  Tapahtuman id, johon kyseinen lipputyyppi liittyy
+> hinta | integer | Lipputyypin tapahtuma- ja hintaryhmäkohtainen hinta
+> kuvaus | char(30) | Lipputyypin kuvaus
+>
+> ### Lippu
+> Lippu-taulu sisältää lipun tunnistetiedot. Lippu liittyy vain yhteen lipputyyppiin ja ostotapahtumaan kerrallaan.
+>
+> Kenttä | Tyyppi | Kuvaus
+> ------ | ------ | ------
+> lippu_id | int PK | Lipun id
+> tilausnumero | int FK |  Ostotapahtuman id, johon kyseinen lippu liittyy
+> tyyppi_id | int FK | Lipputyypin id, johon kyseinen lippu liittyy
+>
+> ### OstoTapahtuma
+> Ostotapahtuma-taulu sisältää ostotapahtuman tunnistetiedot. Ostotapahtuma voi sisältää monta lippua, mutta vain yhden myyjän.
+>
+> Kenttä | Tyyppi | Kuvaus
+> ------ | ------ | ------
+> tilausnumero | int PK | Ostotapahtuman id
+> myyjä | int FK |  Myyjän id, joka myi lipun
+> myynti_pvm | datetime | Ostotapahtuman päivämäärä
+>
+> ### Myyjä
+> Myyjä-taulu sisältää myyjän tiedot. Myyjään voi liittyä monta ostotapahtumaa.
+>
+> Kenttä | Tyyppi | Kuvaus
+> ------ | ------ | ------
+> myyjä_id | int PK | Myyjän id
+> nimi | char(30) |  Myyjän nimi
+
 
 ## Tekninen kuvaus
 
