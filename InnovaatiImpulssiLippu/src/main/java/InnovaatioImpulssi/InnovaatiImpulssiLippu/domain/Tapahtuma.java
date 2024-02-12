@@ -2,6 +2,11 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+//@Entity
+//@Table(name = "tapahtuma")
 public class Tapahtuma {
 
   private long tapahtuma_id;
