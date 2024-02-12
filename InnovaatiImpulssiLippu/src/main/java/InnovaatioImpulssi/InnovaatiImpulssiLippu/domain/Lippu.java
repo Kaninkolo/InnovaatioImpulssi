@@ -1,5 +1,6 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,7 +10,7 @@ public class Lippu {
     private Long lippu_id;
 
     @ManyToMany
-    @JoinColumn(name = lippu_id)
+    @JoinColumn(name = "tyyppi_id")
     private LippuTyyppi lippuTyyppi;
 
     /// @ManyToOne
