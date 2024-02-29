@@ -1,17 +1,20 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Myyja {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long myyja_id;
 
     private String nimi;
 
-    public Myyja(long myyja_id, String nimi) {
-        this.myyja_id = myyja_id;
+    public Myyja(String nimi) {
+
         this.nimi = nimi;
     }
 
