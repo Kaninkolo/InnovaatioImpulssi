@@ -1,40 +1,62 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.web;
 
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.TapatumaRepository;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.service.TapahtumaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.Tapahtuma;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("/tapahtuma")
+@RequestMapping("/api/tapahtuma")
 public class TapahtumaController {
 
     @Autowired
-    TapatumaRepository tapatumaRepository;
-    private final AtomicLong counter = new AtomicLong();
+    TapahtumaService tapahtumaService;
+//    private final AtomicLong counter = new AtomicLong();
+//
+//    @GetMapping
+//    public Tapahtuma tapahtuma(
+//            @RequestParam(value = "kuvaus", defaultValue = "Kuvaus") String kuvaus,
+//            @RequestParam(value = "pvm", defaultValue = "01.01.01") @DateTimeFormat(pattern = "dd.MM.yy") Date pvm
+//    ) {
+//        return new Tapahtuma(counter.incrementAndGet(), pvm, "sijainti", kuvaus);
+//    }
 
     @GetMapping
-    public Tapahtuma tapahtuma(
-            @RequestParam(value = "kuvaus", defaultValue = "Kuvaus") String kuvaus,
-            @RequestParam(value = "pvm", defaultValue = "01.01.01") @DateTimeFormat(pattern = "dd.MM.yy") Date pvm
-    ) {
-        return new Tapahtuma(counter.incrementAndGet(), pvm, "sijainti", kuvaus);
+    public List<Tapahtuma> getAllTapahuma(){
+        return tapahtumaService.getAllTapahtuma();
     }
+
+    @GetMapping("/{tapahtuma_id}")
+    public Tapahtuma getTapahtuma(@PathVariable("tapahtuma_id") Long tapahtuma_id){
+        return tapahtumaService.getTapahtumaById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löydy"));
+    }
+
+    @PostMapping
+    public ResponseEntity<Tapahtuma> saveTapahtuma(@RequestBody Tapahtuma tapahtuma){
+        Tapahtuma savedTapahtuma = tapahtumaService.saveTapahtuma(tapahtuma);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTapahtuma);
+    }
+
+    @PutMapping("/tapahtuma_id")
+    public ResponseEntity<Tapahtuma> updateTapahtuma(@PathVariable Long tapahtuma_id, @RequestBody Tapahtuma tapahtumaBodi){
+        Tapahtuma updateTapahtuma = tapahtumaService.updateTapahtuma(tapahtuma_id, tapahtumaBodi);
+        return ResponseEntity.ok(updateTapahtuma);
+    }
+
     @DeleteMapping("/{tapahtuma_id}")
     public ResponseEntity<Void> deleteTapahtuma(@PathVariable("tapahtuma_id") Long tapahtuma_id){
-        if (tapatumaRepository.existsById(tapahtuma_id)){
-            tapatumaRepository.deleteById(tapahtuma_id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        tapahtumaService.deleteTapahtuma(tapahtuma_id);
+        return ResponseEntity.ok().build();
     }
 }
-}
+
 

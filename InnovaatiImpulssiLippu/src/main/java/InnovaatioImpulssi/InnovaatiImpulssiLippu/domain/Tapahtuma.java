@@ -3,18 +3,23 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 //@Table(name = "tapahtuma")
 public class Tapahtuma {
 
-  private long tapahtuma_id;
+  @Id
+  private Long tapahtuma_id;
   private Date pvm;
   private String sijainti;
   private String kuvaus;
 
-  public Tapahtuma(long tapahtuma_id, Date pvm, String sijainti, String kuvaus) {
+  public Tapahtuma(){
+
+  }
+  public Tapahtuma(Long tapahtuma_id, Date pvm, String sijainti, String kuvaus) {
     this.tapahtuma_id = tapahtuma_id;
     this.pvm = pvm;
     this.sijainti = sijainti;
@@ -25,7 +30,7 @@ public class Tapahtuma {
     return tapahtuma_id;
   }
 
-  public void setTapahtuma_id(long tapahtuma_id) {
+  public void setTapahtuma_id(Long tapahtuma_id) {
     this.tapahtuma_id = tapahtuma_id;
   }
 
