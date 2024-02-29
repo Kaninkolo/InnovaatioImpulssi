@@ -1,8 +1,8 @@
-package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface LippuRepository extends CrudRepository<Lippu, Long> {
-
-
-}
+//package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
+//
+//import org.springframework.data.repository.CrudRepository;
+//
+//public interface LippuRepository extends CrudRepository<Lippu, Long> {
+//
+//
+//}
