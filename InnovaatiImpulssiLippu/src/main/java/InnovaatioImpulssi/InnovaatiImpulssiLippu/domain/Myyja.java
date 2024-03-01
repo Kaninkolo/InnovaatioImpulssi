@@ -22,6 +22,10 @@ public class Myyja {
 
     public Myyja() {}
 
+    public Myyja(String nimi) {
+        this.nimi = nimi;
+    }
+
     public Myyja(Long myyja_id, String nimi, List<OstoTapahtuma> ostotapahtumat) {
         this.myyja_id = myyja_id;
         this.nimi = nimi;
