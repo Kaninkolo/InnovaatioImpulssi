@@ -1,22 +1,29 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 public class Lippu {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long lippu_id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "tyyppi_id")
-    private LippuTyyppi lippuTyyppi;
+    private LippuTyyppi lipputyyppi;
 
-    /// @ManyToOne
-    // @JoinColumn(name = tilausnumero)
-    // private Tilausnumero tilausnumero;
+    @ManyToOne
+    @JoinColumn(name = "tilausnumero_id")
+    private OstoTapahtuma ostotapahtuma;
 
+    public Lippu() {}
+
+    public Lippu(Long lippu_id, LippuTyyppi lipputyyppi, OstoTapahtuma ostotapahtuma) {
+        this.lippu_id = lippu_id;
+        this.lipputyyppi = lipputyyppi;
+        this.ostotapahtuma = ostotapahtuma;
+    }
 
     public Long getLippu_id() {
         return lippu_id;
@@ -26,19 +33,27 @@ public class Lippu {
         this.lippu_id = lippu_id;
     }
 
-    public LippuTyyppi getLippuTyyppi() {
-        return lippuTyyppi;
+    public LippuTyyppi getLipputyyppi() {
+        return lipputyyppi;
     }
 
-    public void setLippuTyyppi(LippuTyyppi lippuTyyppi) {
-        this.lippuTyyppi = lippuTyyppi;
+    public void setLipputyyppi(LippuTyyppi lipputyyppi) {
+        this.lipputyyppi = lipputyyppi;
+    }
+
+    public OstoTapahtuma getOstoTapahtuma() {
+        return ostotapahtuma;
+    }
+
+    public void setOstoTapahtuma(OstoTapahtuma ostotapahtuma) {
+        this.ostotapahtuma = ostotapahtuma;
     }
 
     @Override
     public String toString() {
-        return "Lippu{" +
-                "lippu_id=" + lippu_id +
-                ", lippuTyyppi=" + lippuTyyppi +
-                '}';
+        return "Lippu [lippu_id=" + lippu_id + ", lipputyyppi=" + lipputyyppi + ", ostoTapahtuma=" + ostotapahtuma
+                + "]";
     }
+
+    
 }

@@ -1,37 +1,47 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class OstoTapahtuma {
+
     @Id
-    private long tilausnumero_id;
-    private long myyja_id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long tilausnumero_id;
     private Date myynti_pvm;
 
-    public OstoTapahtuma(long tilausnumero_id, long myyja_id, Date myynti_pvm) {
+    @ManyToOne
+    @JoinColumn(name = "myyja_id")
+    private Myyja myyja;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ostotapahtuma")
+    private List<Lippu> liput;
+
+    public OstoTapahtuma() {}
+
+    public OstoTapahtuma(Long tilausnumero_id, Date myynti_pvm, Myyja myyja, List<Lippu> liput) {
         this.tilausnumero_id = tilausnumero_id;
-        this.myyja_id = myyja_id;
         this.myynti_pvm = myynti_pvm;
+        this.myyja = myyja;
+        this.liput = liput;
     }
 
-    public long getTilausnumero_id() {
+    public Long getTilausnumero_id() {
         return tilausnumero_id;
     }
 
-    public void setTilausnumero_id(long tilausnumero_id) {
+    public void setTilausnumero_id(Long tilausnumero_id) {
         this.tilausnumero_id = tilausnumero_id;
-    }
-
-    public long getMyyja_id() {
-        return myyja_id;
-    }
-
-    public void setMyyja_id(long myyja_id) {
-        this.myyja_id = myyja_id;
     }
 
     public Date getMyynti_pvm() {
@@ -42,10 +52,27 @@ public class OstoTapahtuma {
         this.myynti_pvm = myynti_pvm;
     }
 
-    @Override
-    public String toString() {
-        return "OstoTapahtuma [tilausnumero_id=" + tilausnumero_id + ", myyja_id=" + myyja_id + ", myynti_pvm="
-                + myynti_pvm + "]";
+    public Myyja getMyyja() {
+        return myyja;
     }
 
+    public void setMyyja(Myyja myyja) {
+        this.myyja = myyja;
+    }
+
+    public List<Lippu> getLiput() {
+        return liput;
+    }
+
+    public void setLiput(List<Lippu> liput) {
+        this.liput = liput;
+    }
+
+    @Override
+    public String toString() {
+        return "OstoTapahtuma [tilausnumero_id=" + tilausnumero_id + ", myynti_pvm=" + myynti_pvm + ", myyja=" + myyja
+                + ", liput=" + liput + "]";
+    }
+    
+    
 }
