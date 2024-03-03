@@ -29,7 +29,8 @@ public class TapahtumaService {
     public Tapahtuma updateTapahtuma(Long tapahtuma_id, Tapahtuma tapahtumaDetails){
         Tapahtuma tapahtuma = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("Tapahtumaa ei löytynyt tietokannasta"));
         tapahtuma.setKuvaus(tapahtumaDetails.getKuvaus());
-        //tapahtuma.SetPvm .... jatka myöhemmin
+        tapahtuma.setPvm(tapahtumaDetails.getPvm());
+        tapahtuma.setSijainti(tapahtumaDetails.getSijainti());
 
         return tapatumaRepository.save(tapahtuma);
     }

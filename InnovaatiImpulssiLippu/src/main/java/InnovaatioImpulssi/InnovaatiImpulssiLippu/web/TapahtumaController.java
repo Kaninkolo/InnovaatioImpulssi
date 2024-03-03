@@ -46,7 +46,7 @@ public class TapahtumaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTapahtuma);
     }
 
-    @PutMapping("/tapahtuma_id")
+    @PutMapping("/{tapahtuma_id}")
     public ResponseEntity<Tapahtuma> updateTapahtuma(@PathVariable Long tapahtuma_id, @RequestBody Tapahtuma tapahtumaBodi){
         Tapahtuma updateTapahtuma = tapahtumaService.updateTapahtuma(tapahtuma_id, tapahtumaBodi);
         return ResponseEntity.ok(updateTapahtuma);

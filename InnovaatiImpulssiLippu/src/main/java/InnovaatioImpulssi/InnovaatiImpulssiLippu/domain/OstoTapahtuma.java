@@ -12,6 +12,10 @@ public class OstoTapahtuma {
     private long myyja_id;
     private Date myynti_pvm;
 
+    public OstoTapahtuma(){
+
+    }
+
     public OstoTapahtuma(long tilausnumero_id, long myyja_id, Date myynti_pvm) {
         this.tilausnumero_id = tilausnumero_id;
         this.myyja_id = myyja_id;

@@ -1,8 +1,9 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
-public interface LippuRepository extends CrudRepository<Lippu, Long> {
+public interface LippuRepository extends JpaRepository<Lippu, Long> {
 
 
 }
