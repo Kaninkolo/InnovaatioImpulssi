@@ -17,6 +17,24 @@ public class Lippu {
     @JoinColumn(name = "tilausnumero_id")
     private OstoTapahtuma ostotapahtuma;
 
+    private Integer lippujenMaara;
+
+    public Integer getLippujenMaara() {
+        return lippujenMaara;
+    }
+
+    public void setLippujenMaara(Integer lippujenMaara) {
+        this.lippujenMaara = lippujenMaara;
+    }
+
+    public OstoTapahtuma getOstotapahtuma() {
+        return ostotapahtuma;
+    }
+
+    public void setOstotapahtuma(OstoTapahtuma ostotapahtuma) {
+        this.ostotapahtuma = ostotapahtuma;
+    }
+
     public Lippu() {}
 
     public Lippu(Long lippu_id, LippuTyyppi lipputyyppi, OstoTapahtuma ostotapahtuma) {

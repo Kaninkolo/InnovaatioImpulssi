@@ -31,7 +31,7 @@ public class LippuService {
 
     public Lippu updateLippu(Long lippu_id, Lippu lippudetails){
         Lippu lippu = lippuRepository.findById(lippu_id).orElseThrow(() -> new RuntimeException("Lippua ei löytynyt tietokannasta"));
-        lippu.setLippuTyyppi(lippudetails.getLippuTyyppi());
+        lippu.setLipputyyppi(lippudetails.getLipputyyppi());
 
         return lippuRepository.save(lippu);
     }
