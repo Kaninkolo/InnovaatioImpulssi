@@ -1,15 +1,20 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu;
 
-import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
-import org.springframework.boot.CommandLineRunner;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.LippuRepository;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.Myyja;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.MyyjaRepository;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.Tapahtuma;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.TapatumaRepository;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import org.springframework.boot.CommandLineRunner;
 
 @SpringBootApplication
 public class InnovaatiImpulssiLippuSovellusApplication {
@@ -19,35 +24,21 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 	}
 
 	@Bean
-	public CommandLineRunner myyjanLuonti(MyyjaRepository myyjarepository,
-										  TapatumaRepository tapatumaRepository,
-										  LippuRepository lippuRepository,
-										  LippuTyyppiRepository lippuTyyppiRepository) {
+	public CommandLineRunner myyjanLuonti(MyyjaRepository myyjarepository) {
 		return (args) -> {
 
 			myyjarepository.save(new Myyja("Pekka Puupää"));
+		};
+	}
 
+	@Bean
+	public CommandLineRunner tapahtuma(TapatumaRepository tapahtumarepository) {
+		return (args) -> {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-			Tapahtuma tapahtuma = new Tapahtuma();
-			tapahtuma.setTapahtuma_id(Long.valueOf(2));
-			tapahtuma.setPvm(new Date());
-			tapahtuma.setSijainti("Forssa");
-			tapahtuma.setKuvaus("Konsertti");
-			tapahtuma = tapatumaRepository.save(tapahtuma);
-
-			LippuTyyppi lippuTyyppi = new LippuTyyppi();
-			lippuTyyppi.setTapahtuma(tapahtuma);
-			lippuTyyppi.setHinta(new BigDecimal(99.99));
-			lippuTyyppi.setKuvaus("Normaali hinta");
-			lippuTyyppi = lippuTyyppiRepository.save(lippuTyyppi);
-
-			Lippu lippu = new Lippu();
-			lippu.setLipputyyppi(lippuTyyppi);
-			lippu.setLippujenMaara(100);
-			lippu = lippuRepository.save(lippu);
-
-			lippuTyyppi.setLiput(Collections.singletonList(lippu));
-			lippuTyyppiRepository.save(lippuTyyppi);
+			Tapahtuma tapahtuma = new Tapahtuma(null, sdf.parse("15-03-2022"), "Helsinki", "Kevätkonsertti",
+					new ArrayList<>());
+			tapahtumarepository.save(tapahtuma);
 
 		};
 	}
