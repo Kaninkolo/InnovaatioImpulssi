@@ -26,6 +26,7 @@ public class TapahtumaService {
         return tapatumaRepository.findAll();
     }
 
+    // TODO:Tarkista että kuvaus, pvm ja sijainnissa on dataa
     public Tapahtuma updateTapahtuma(Long tapahtuma_id, Tapahtuma tapahtumaDetails){
         Tapahtuma tapahtuma = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("Tapahtumaa ei löytynyt tietokannasta"));
         tapahtuma.setKuvaus(tapahtumaDetails.getKuvaus());

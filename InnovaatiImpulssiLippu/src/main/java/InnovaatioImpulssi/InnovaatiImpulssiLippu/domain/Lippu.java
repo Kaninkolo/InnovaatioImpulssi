@@ -1,5 +1,6 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,9 +16,10 @@ public class Lippu {
 
     @ManyToOne
     @JoinColumn(name = "tilausnumero_id")
+    @JsonIgnore
     private OstoTapahtuma ostotapahtuma;
 
-    private Integer lippujenMaara;
+    private int lippujenMaara;
 
     public Integer getLippujenMaara() {
         return lippujenMaara;
