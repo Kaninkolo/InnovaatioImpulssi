@@ -51,7 +51,7 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			tapahtuma2.setPvm(sdf.parse("15-05-2022"));
 			tapahtuma2.setSijainti("Imatra");
 			tapahtuma2.setKuvaus("Nykytaiteen Tapahtuma");
-			tapahtuma2.setLippumaara(100);
+			tapahtuma2.setLippumaara(150);
 			tapahtuma2 = tapatumaRepository.save(tapahtuma2);
 
 			LippuTyyppi lippuTyyppiImatra = new LippuTyyppi();
