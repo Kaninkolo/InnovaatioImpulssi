@@ -5,10 +5,7 @@ import InnovaatioImpulssi.InnovaatiImpulssiLippu.web.OstoTapahtumaData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class LippuService {
@@ -38,7 +35,7 @@ public class LippuService {
 
         Myyja myyja = myyjaRepository.findById(myyja_id).orElseThrow(() -> new RuntimeException("Myyjää ei löydy tietokannasta"));
         Tapahtuma lippuMaaraReposta = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
-        LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findById(lipputyyppi_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
+        LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findById(lipputyyppi_id).orElseThrow(() -> new RuntimeException("Lipputyyyppiä ei löytynyt"));
 
         if (lippuMaaraReposta.getLippumaara() >= lippumaara){
             lippuMaaraReposta.setLippumaara(lippuMaaraReposta.getLippumaara() - lippumaara);
@@ -46,12 +43,16 @@ public class LippuService {
 
             OstoTapahtuma uusiOstoTapahtuma = new OstoTapahtuma();
             uusiOstoTapahtuma.setMyynti_pvm(new Date());
-
+            uusiOstoTapahtuma.setMyyja(myyja);
+            //TODO: Katotaan yhteydet kuntoon niin ei heitä virheitä kun lisää lippu listan ostotapahtumaan, heittää myös virheen sen jälkeen kun hakee liput getillä /api/tapahtuma ostotapahtuman jälkeen
+          //  List<Lippu> liput = new ArrayList<>();
             for (int i = 0; i < lippumaara; i++){
                 Lippu lippu = new Lippu();
                 lippu.setLipputyyppi(lippuTyyppi);
                 lippuRepository.save(lippu);
+             //   liput.add(lippu);
             }
+         //   uusiOstoTapahtuma.setLiput(liput);
             ostoTapahtumaRepository.save(uusiOstoTapahtuma);
             return uusiOstoTapahtuma;
         } else {

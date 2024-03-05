@@ -1,5 +1,6 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -16,7 +17,7 @@ public class Lippu {
 
     @ManyToOne
     @JoinColumn(name = "tilausnumero_id")
-    @JsonIgnore
+    @JsonBackReference
     private OstoTapahtuma ostotapahtuma;
 
 //    private int lippujenMaara;

@@ -2,6 +2,7 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +18,8 @@ public class Myyja {
     private Long myyja_id;
     private String nimi;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "myyja") 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "myyja")
+    @JsonBackReference
 	private List<OstoTapahtuma> ostotapahtumat;
 
     public Myyja() {}

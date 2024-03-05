@@ -23,6 +23,7 @@ public class OstoTapahtuma {
 
     @ManyToOne
     @JoinColumn(name = "myyja_id")
+    @JsonManagedReference
     private Myyja myyja;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ostotapahtuma")
