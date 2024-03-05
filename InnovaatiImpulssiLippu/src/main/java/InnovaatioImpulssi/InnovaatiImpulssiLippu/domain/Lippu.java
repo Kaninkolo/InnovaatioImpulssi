@@ -19,15 +19,15 @@ public class Lippu {
     @JsonIgnore
     private OstoTapahtuma ostotapahtuma;
 
-    private int lippujenMaara;
-
-    public Integer getLippujenMaara() {
-        return lippujenMaara;
-    }
-
-    public void setLippujenMaara(Integer lippujenMaara) {
-        this.lippujenMaara = lippujenMaara;
-    }
+//    private int lippujenMaara;
+//
+//    public Integer getLippujenMaara() {
+//        return lippujenMaara;
+//    }
+//
+//    public void setLippujenMaara(Integer lippujenMaara) {
+//        this.lippujenMaara = lippujenMaara;
+//    }
 
     public OstoTapahtuma getOstotapahtuma() {
         return ostotapahtuma;

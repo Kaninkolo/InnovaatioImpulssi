@@ -26,6 +26,9 @@ public class Tapahtuma {
   @JsonManagedReference
   private List<LippuTyyppi> lipputyypit;
 
+  private int lippumaara;
+
+
 
   public Tapahtuma(){}
 
@@ -37,6 +40,13 @@ public class Tapahtuma {
     this.lipputyypit = lipputyypit;
   }
 
+  public int getLippumaara() {
+    return lippumaara;
+  }
+
+  public void setLippumaara(int lippumaara) {
+    this.lippumaara = lippumaara;
+  }
   public Long getTapahtuma_id() {
     return tapahtuma_id;
   }

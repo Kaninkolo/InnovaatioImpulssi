@@ -1,6 +1,7 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.service;
 
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.*;
+import InnovaatioImpulssi.InnovaatiImpulssiLippu.web.OstoTapahtumaData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,22 +22,38 @@ public class LippuService {
     @Autowired
     private MyyjaRepository myyjaRepository;
 
-    //TODO: logiikka lippujen myynnille
-    //TODO: tarkistaa että lippuja on myytävänä ja lisää ostetun lipun repoon
-    //TODO:
-    public OstoTapahtuma buyLippu(Long lippu_id, int lippumaara, Long myyja_id){
-        Myyja myyja = myyjaRepository.findById(myyja_id).orElseThrow(() -> new RuntimeException("Myyjää ei löydy tietokannasta"));
-        Lippu lippuMaaraReposta = lippuRepository.findById(lippu_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
-        if (lippuMaaraReposta.getLippujenMaara() >= lippumaara){
-            lippuMaaraReposta.setLippujenMaara(lippuMaaraReposta.getLippujenMaara() - lippumaara);
-            lippuRepository.save(lippuMaaraReposta);
+    @Autowired
+    private TapatumaRepository tapatumaRepository;
 
-            OstoTapahtuma ostoTapahtuma = new OstoTapahtuma();
-            ostoTapahtuma.setMyynti_pvm(new Date());
-            ostoTapahtuma.setLiput(Collections.singletonList(lippuMaaraReposta));
-            ostoTapahtuma.setMyyja(myyja);
-            ostoTapahtumaRepository.save(ostoTapahtuma);
-            return ostoTapahtuma;
+    @Autowired
+    private LippuTyyppiRepository lippuTyyppiRepository;
+
+    //TODO: EI TOIMI KUNNOLLA VIELÄ KOITAN KATTOA KUNTOON ENNEN TUNTIA
+    public OstoTapahtuma buyLippu(OstoTapahtumaData ostoTapahtumaData){
+
+        Long myyja_id = ostoTapahtumaData.getMyyja_id_data();
+        Long tapahtuma_id = ostoTapahtumaData.getTapahtuma_id_data();
+        Long lipputyyppi_id = ostoTapahtumaData.getLipputyyppi_id_data();
+        int lippumaara = ostoTapahtumaData.getLippumaara_data();
+
+        Myyja myyja = myyjaRepository.findById(myyja_id).orElseThrow(() -> new RuntimeException("Myyjää ei löydy tietokannasta"));
+        Tapahtuma lippuMaaraReposta = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
+        LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findById(lipputyyppi_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
+
+        if (lippuMaaraReposta.getLippumaara() >= lippumaara){
+            lippuMaaraReposta.setLippumaara(lippuMaaraReposta.getLippumaara() - lippumaara);
+            tapatumaRepository.save(lippuMaaraReposta);
+
+            OstoTapahtuma uusiOstoTapahtuma = new OstoTapahtuma();
+            uusiOstoTapahtuma.setMyynti_pvm(new Date());
+
+            for (int i = 0; i < lippumaara; i++){
+                Lippu lippu = new Lippu();
+                lippu.setLipputyyppi(lippuTyyppi);
+                lippuRepository.save(lippu);
+            }
+            ostoTapahtumaRepository.save(uusiOstoTapahtuma);
+            return uusiOstoTapahtuma;
         } else {
             throw new RuntimeException("Ei tarpeeksi lippuja saatavilla");
         }
