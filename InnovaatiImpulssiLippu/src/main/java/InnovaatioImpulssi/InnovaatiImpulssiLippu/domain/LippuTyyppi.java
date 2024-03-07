@@ -26,6 +26,7 @@ public class LippuTyyppi {
     private Tapahtuma tapahtuma;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lipputyyppi")
+    @JsonBackReference
     private List<Lippu> liput;
 
     private String kuvaus;

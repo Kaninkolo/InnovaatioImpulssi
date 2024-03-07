@@ -4,6 +4,7 @@ import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.*;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.web.OstoTapahtumaData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -26,6 +27,7 @@ public class LippuService {
     private LippuTyyppiRepository lippuTyyppiRepository;
 
     //TODO: EI TOIMI KUNNOLLA VIELÄ KOITAN KATTOA KUNTOON ENNEN TUNTIA
+    @Transactional
     public OstoTapahtuma buyLippu(OstoTapahtumaData ostoTapahtumaData){
 
         Long myyja_id = ostoTapahtumaData.getMyyja_id_data();
@@ -44,15 +46,15 @@ public class LippuService {
             OstoTapahtuma uusiOstoTapahtuma = new OstoTapahtuma();
             uusiOstoTapahtuma.setMyynti_pvm(new Date());
             uusiOstoTapahtuma.setMyyja(myyja);
-            //TODO: Katotaan yhteydet kuntoon niin ei heitä virheitä kun lisää lippu listan ostotapahtumaan, heittää myös virheen sen jälkeen kun hakee liput getillä /api/tapahtuma ostotapahtuman jälkeen
-          //  List<Lippu> liput = new ArrayList<>();
+
+           List<Lippu> liput = new ArrayList<>();
             for (int i = 0; i < lippumaara; i++){
                 Lippu lippu = new Lippu();
                 lippu.setLipputyyppi(lippuTyyppi);
                 lippuRepository.save(lippu);
-             //   liput.add(lippu);
+               liput.add(lippu);
             }
-         //   uusiOstoTapahtuma.setLiput(liput);
+            uusiOstoTapahtuma.setLiput(liput);
             ostoTapahtumaRepository.save(uusiOstoTapahtuma);
             return uusiOstoTapahtuma;
         } else {
