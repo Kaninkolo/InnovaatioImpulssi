@@ -3,14 +3,10 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 
 import org.springframework.boot.CommandLineRunner;
 
@@ -34,7 +30,7 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 			Tapahtuma tapahtuma1 = new Tapahtuma();
-			tapahtuma1.setTapahtuma_id(null);
+			tapahtuma1.setTapahtumaId(null);
 			tapahtuma1.setPvm(sdf.parse("15-06-2022"));
 			tapahtuma1.setSijainti("Forssa");
 			tapahtuma1.setKuvaus("Konsertti");
@@ -48,7 +44,7 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			lippuTyyppiRepository.save(lippuTyyppi);
 
 			Tapahtuma tapahtuma2 = new Tapahtuma();
-			tapahtuma2.setTapahtuma_id(null);
+			tapahtuma2.setTapahtumaId(null);
 			tapahtuma2.setPvm(sdf.parse("15-05-2022"));
 			tapahtuma2.setSijainti("Imatra");
 			tapahtuma2.setKuvaus("Nykytaiteen Tapahtuma");

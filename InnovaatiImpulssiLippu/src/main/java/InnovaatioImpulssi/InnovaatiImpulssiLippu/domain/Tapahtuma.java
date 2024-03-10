@@ -16,7 +16,7 @@ public class Tapahtuma {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Long tapahtuma_id;
+  private Long tapahtumaId;
 
   private Date pvm;
   private String sijainti;
@@ -32,8 +32,8 @@ public class Tapahtuma {
 
   public Tapahtuma(){}
 
-  public Tapahtuma(Long tapahtuma_id, Date pvm, String sijainti, String kuvaus, List<LippuTyyppi> lipputyypit) {
-    this.tapahtuma_id = tapahtuma_id;
+  public Tapahtuma(Long tapahtumaId, Date pvm, String sijainti, String kuvaus, List<LippuTyyppi> lipputyypit) {
+    this.tapahtumaId = tapahtumaId;
     this.pvm = pvm;
     this.sijainti = sijainti;
     this.kuvaus = kuvaus;
@@ -47,12 +47,12 @@ public class Tapahtuma {
   public void setLippumaara(int lippumaara) {
     this.lippumaara = lippumaara;
   }
-  public Long getTapahtuma_id() {
-    return tapahtuma_id;
+  public Long getTapahtumaId() {
+    return tapahtumaId;
   }
 
-  public void setTapahtuma_id(Long tapahtuma_id) {
-    this.tapahtuma_id = tapahtuma_id;
+  public void setTapahtumaId(Long tapahtumaId) {
+    this.tapahtumaId = tapahtumaId;
   }
 
   public Date getPvm() {
@@ -89,7 +89,7 @@ public class Tapahtuma {
 
   @Override
   public String toString() {
-    return "Tapahtuma [tapahtuma_id=" + tapahtuma_id + ", pvm=" + pvm + ", sijainti=" + sijainti + ", kuvaus=" + kuvaus
+    return "Tapahtuma [tapahtuma_id=" + tapahtumaId + ", pvm=" + pvm + ", sijainti=" + sijainti + ", kuvaus=" + kuvaus
         + ", lipputyypit=" + lipputyypit + "]";
   }
 

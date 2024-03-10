@@ -18,7 +18,7 @@ public class LippuTyyppi {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long tyyppi_id;
+    private Long tyyppiId;
 
     @ManyToOne
     @JoinColumn(name = "tapahtuma_id")
@@ -37,21 +37,21 @@ public class LippuTyyppi {
 
     public LippuTyyppi() {}
 
-    public LippuTyyppi(Long tyyppi_id, Tapahtuma tapahtuma, List<Lippu> liput, String kuvaus, BigDecimal hinta) {
-        this.tyyppi_id = tyyppi_id;
+    public LippuTyyppi(Long tyyppiId, Tapahtuma tapahtuma, List<Lippu> liput, String kuvaus, BigDecimal hinta) {
+        this.tyyppiId = tyyppiId;
         this.tapahtuma = tapahtuma;
         this.liput = liput;
         this.kuvaus = kuvaus;
         this.hinta = hinta;
     }
 
-    public Long getTyyppi_id() {
-        return tyyppi_id;
+    public Long getTyyppiId() {
+        return tyyppiId;
     }
 
 
-    public void setTyyppi_id(Long tyyppi_id) {
-        this.tyyppi_id = tyyppi_id;
+    public void setTyyppiId(Long tyyppiId) {
+        this.tyyppiId = tyyppiId;
     }
 
 
@@ -97,7 +97,7 @@ public class LippuTyyppi {
 
     @Override
     public String toString() {
-        return "LippuTyyppi [tyyppi_id=" + tyyppi_id + ", tapahtuma=" + tapahtuma + ", liput=" + liput + ", kuvaus="
+        return "LippuTyyppi [tyyppi_id=" + tyyppiId + ", tapahtuma=" + tapahtuma + ", liput=" + liput + ", kuvaus="
                 + kuvaus + ", hinta=" + hinta + "]";
     }
 

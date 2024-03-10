@@ -38,7 +38,7 @@ public class OstotapahtumaService {
 
         Myyja myyja = myyjaRepository.findById(myyja_id).orElseThrow(() -> new RuntimeException("Myyjää ei löydy tietokannasta"));
         Tapahtuma lippuMaaraReposta = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
-        LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findById(lipputyyppi_id).orElseThrow(() -> new RuntimeException("Lipputyyyppiä ei löytynyt"));
+        LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findByTyyppiIdAndTapahtuma_tapahtumaId(lipputyyppi_id,tapahtuma_id).orElseThrow(() -> new RuntimeException("Lipputyyyppiä ei löytynyt"));
 
 
         if (lippuMaaraReposta.getLippumaara() >= lippumaara){
