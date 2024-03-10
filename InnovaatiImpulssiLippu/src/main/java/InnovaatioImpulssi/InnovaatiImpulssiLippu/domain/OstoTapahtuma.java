@@ -4,15 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class OstoTapahtuma {
@@ -27,8 +21,8 @@ public class OstoTapahtuma {
     @JsonManagedReference
     private Myyja myyja;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ostotapahtuma")
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ostotapahtuma", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Lippu> liput;
 
     public OstoTapahtuma() {}

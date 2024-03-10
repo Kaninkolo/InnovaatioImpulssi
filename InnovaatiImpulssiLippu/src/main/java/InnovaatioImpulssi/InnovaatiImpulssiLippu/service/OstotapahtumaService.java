@@ -40,6 +40,7 @@ public class OstotapahtumaService {
         Tapahtuma lippuMaaraReposta = tapatumaRepository.findById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löytynyt"));
         LippuTyyppi lippuTyyppi = lippuTyyppiRepository.findById(lipputyyppi_id).orElseThrow(() -> new RuntimeException("Lipputyyyppiä ei löytynyt"));
 
+
         if (lippuMaaraReposta.getLippumaara() >= lippumaara){
             lippuMaaraReposta.setLippumaara(lippuMaaraReposta.getLippumaara() - lippumaara);
             tapatumaRepository.save(lippuMaaraReposta);
@@ -47,22 +48,28 @@ public class OstotapahtumaService {
             OstoTapahtuma uusiOstoTapahtuma = new OstoTapahtuma();
             uusiOstoTapahtuma.setMyynti_pvm(new Date());
             uusiOstoTapahtuma.setMyyja(myyja);
+            ostoTapahtumaRepository.save(uusiOstoTapahtuma);
 
             List<Lippu> liput = new ArrayList<>();
             for (int i = 0; i < lippumaara; i++){
                 Lippu lippu = new Lippu();
                 lippu.setLipputyyppi(lippuTyyppi);
-                //lippu.setOstotapahtuma(uusiOstoTapahtuma);
+                lippu.setOstotapahtuma(uusiOstoTapahtuma);
                 lippuRepository.save(lippu);
                 liput.add(lippu);
             }
             uusiOstoTapahtuma.setLiput(liput);
             ostoTapahtumaRepository.save(uusiOstoTapahtuma);
 
+
             return uusiOstoTapahtuma;
         } else {
             throw new RuntimeException("Ei tarpeeksi lippuja saatavilla");
         }
 
+    }
+
+    public List<OstoTapahtuma> getAllOstotapahtuma() {
+        return ostoTapahtumaRepository.findAll();
     }
 }

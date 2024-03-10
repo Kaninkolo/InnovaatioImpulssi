@@ -25,7 +25,8 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 	public CommandLineRunner myyjanLuonti(MyyjaRepository myyjarepository,
 										  TapatumaRepository tapatumaRepository,
 										  LippuRepository lippuRepository,
-										  LippuTyyppiRepository lippuTyyppiRepository) {
+										  LippuTyyppiRepository lippuTyyppiRepository,
+										  OstoTapahtumaRepository ostoTapahtumaRepository) {
 		return (args) -> {
 
 			myyjarepository.save(new Myyja("Pekka Puupää"));
@@ -66,6 +67,8 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			lippuTyyppiImatra2.setKuvaus("Alennettu hinta");
 			lippuTyyppiRepository.save(lippuTyyppiImatra2);
 
+//			OstoTapahtuma ostoTapahtuma = new OstoTapahtuma();
+//			ostoTapahtuma.setLiput();
 //			Lippu lippu = new Lippu();
 //			lippu.setLipputyyppi(lippuTyyppi);
 //			lippu.setLippujenMaara(100);

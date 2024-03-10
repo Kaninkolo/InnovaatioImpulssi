@@ -19,7 +19,7 @@ public class Lippu {
 
     @ManyToOne
     @JoinColumn(name = "tilausnumero_id")
-
+    @JsonIgnore
     private OstoTapahtuma ostotapahtuma;
 
 //    private int lippujenMaara;
