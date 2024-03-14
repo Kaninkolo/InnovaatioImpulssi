@@ -28,7 +28,7 @@ public class Tapahtuma {
 
   private int lippumaara;
 
-
+  //TODO: private  int maxLiput;
 
   public Tapahtuma(){}
 

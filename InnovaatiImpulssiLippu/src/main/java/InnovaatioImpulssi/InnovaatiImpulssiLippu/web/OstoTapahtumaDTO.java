@@ -1,6 +1,6 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.web;
 
-public class OstoTapahtumaData {
+public class OstoTapahtumaDTO {
 
         private Long myyja_id_data;
         private Long tapahtuma_id_data;

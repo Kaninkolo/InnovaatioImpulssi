@@ -3,7 +3,6 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -13,7 +12,7 @@ public class OstoTapahtuma {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long tilausnumero_id;
+    private Long tilausnumeroId;
     private Date myynti_pvm;
 
     @ManyToOne
@@ -27,19 +26,19 @@ public class OstoTapahtuma {
 
     public OstoTapahtuma() {}
 
-    public OstoTapahtuma(Long tilausnumero_id, Date myynti_pvm, Myyja myyja, List<Lippu> liput) {
-        this.tilausnumero_id = tilausnumero_id;
+    public OstoTapahtuma(Long tilausnumeroId, Date myynti_pvm, Myyja myyja, List<Lippu> liput) {
+        this.tilausnumeroId = tilausnumeroId;
         this.myynti_pvm = myynti_pvm;
         this.myyja = myyja;
         this.liput = liput;
     }
 
-    public Long getTilausnumero_id() {
-        return tilausnumero_id;
+    public Long getTilausnumeroId() {
+        return tilausnumeroId;
     }
 
-    public void setTilausnumero_id(Long tilausnumero_id) {
-        this.tilausnumero_id = tilausnumero_id;
+    public void setTilausnumeroId(Long tilausnumeroId) {
+        this.tilausnumeroId = tilausnumeroId;
     }
 
     public Date getMyynti_pvm() {
@@ -68,7 +67,7 @@ public class OstoTapahtuma {
 
     @Override
     public String toString() {
-        return "OstoTapahtuma [tilausnumero_id=" + tilausnumero_id + ", myynti_pvm=" + myynti_pvm + ", myyja=" + myyja
+        return "OstoTapahtuma [tilausnumero_id=" + tilausnumeroId + ", myynti_pvm=" + myynti_pvm + ", myyja=" + myyja
                 + ", liput=" + liput + "]";
     }
     

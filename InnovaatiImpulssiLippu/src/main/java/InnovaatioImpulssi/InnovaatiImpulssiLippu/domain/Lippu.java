@@ -1,6 +1,5 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,15 +9,15 @@ public class Lippu {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long lippu_id;
+    private Long lippuId;
 
     @ManyToOne
-    @JoinColumn(name = "tyyppi_id")
+    @JoinColumn(name = "tyyppiId")
     @JsonManagedReference
     private LippuTyyppi lipputyyppi;
 
     @ManyToOne
-    @JoinColumn(name = "tilausnumero_id")
+    @JoinColumn(name = "tilausnumeroId")
     @JsonIgnore
     private OstoTapahtuma ostotapahtuma;
 
@@ -32,6 +31,8 @@ public class Lippu {
 //        this.lippujenMaara = lippujenMaara;
 //    }
 
+    //TODO: Lisää mille tapahtumalle ostetaan lippuja
+
     public OstoTapahtuma getOstotapahtuma() {
         return ostotapahtuma;
     }
@@ -42,18 +43,18 @@ public class Lippu {
 
     public Lippu() {}
 
-    public Lippu(Long lippu_id, LippuTyyppi lipputyyppi, OstoTapahtuma ostotapahtuma) {
-        this.lippu_id = lippu_id;
+    public Lippu(Long lippuId, LippuTyyppi lipputyyppi, OstoTapahtuma ostotapahtuma) {
+        this.lippuId = lippuId;
         this.lipputyyppi = lipputyyppi;
         this.ostotapahtuma = ostotapahtuma;
     }
 
-    public Long getLippu_id() {
-        return lippu_id;
+    public Long getLippuId() {
+        return lippuId;
     }
 
-    public void setLippu_id(Long lippu_id) {
-        this.lippu_id = lippu_id;
+    public void setLippuId(Long lippuId) {
+        this.lippuId = lippuId;
     }
 
     public LippuTyyppi getLipputyyppi() {
@@ -74,7 +75,7 @@ public class Lippu {
 
     @Override
     public String toString() {
-        return "Lippu [lippu_id=" + lippu_id + ", lipputyyppi=" + lipputyyppi + ", ostoTapahtuma=" + ostotapahtuma
+        return "Lippu [lippu_id=" + lippuId + ", lipputyyppi=" + lipputyyppi + ", ostoTapahtuma=" + ostotapahtuma
                 + "]";
     }
 

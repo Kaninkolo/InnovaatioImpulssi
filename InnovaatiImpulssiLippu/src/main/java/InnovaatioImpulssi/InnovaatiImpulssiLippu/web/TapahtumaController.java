@@ -31,7 +31,7 @@ public class TapahtumaController {
 //    }
 
     @GetMapping
-    public List<Tapahtuma> getAllTapahuma(){
+    public List<Tapahtuma> getAllTapahtuma(){
         return tapahtumaService.getAllTapahtuma();
     }
 
@@ -40,12 +40,14 @@ public class TapahtumaController {
         return tapahtumaService.getTapahtumaById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löydy"));
     }
 
+    //TODO: Validointi
     @PostMapping
     public ResponseEntity<Tapahtuma> saveTapahtuma(@RequestBody Tapahtuma tapahtuma){
         Tapahtuma savedTapahtuma = tapahtumaService.saveTapahtuma(tapahtuma);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTapahtuma);
     }
 
+    //TODO: Validointi
     @PutMapping("/{tapahtuma_id}")
     public ResponseEntity<Tapahtuma> updateTapahtuma(@PathVariable Long tapahtuma_id, @RequestBody Tapahtuma tapahtumaBodi){
         Tapahtuma updateTapahtuma = tapahtumaService.updateTapahtuma(tapahtuma_id, tapahtumaBodi);
