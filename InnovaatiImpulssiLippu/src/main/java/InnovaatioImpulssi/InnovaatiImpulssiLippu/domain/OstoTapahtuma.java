@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class OstoTapahtuma {
@@ -13,6 +14,8 @@ public class OstoTapahtuma {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long tilausnumeroId;
+
+    @NotNull(message = "date required")
     private Date myynti_pvm;
 
     @ManyToOne

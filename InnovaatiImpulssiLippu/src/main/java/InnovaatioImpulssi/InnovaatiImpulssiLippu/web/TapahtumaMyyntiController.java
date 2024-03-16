@@ -4,6 +4,7 @@ import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.Lippu;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.OstoTapahtuma;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.service.LippuService;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.service.OstotapahtumaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class TapahtumaMyyntiController {
     @Autowired LippuService lippuService;
 
     @PostMapping
-    public ResponseEntity<?> purchaseLippu(@RequestBody OstoTapahtumaDTO ostoTapahtumaDTO){
+    public ResponseEntity<?> purchaseLippu(@Valid @RequestBody OstoTapahtumaDTO ostoTapahtumaDTO){
         try {
             OstoTapahtuma uusiOstotapahtuma = ostotapahtumaService.buyLippu(ostoTapahtumaDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(uusiOstotapahtuma);

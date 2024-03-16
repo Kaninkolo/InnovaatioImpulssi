@@ -3,6 +3,7 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Lippu {
@@ -11,10 +12,12 @@ public class Lippu {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long lippuId;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "tyyppiId")
     @JsonManagedReference
     private LippuTyyppi lipputyyppi;
+
 
     @ManyToOne
     @JoinColumn(name = "tilausnumeroId")

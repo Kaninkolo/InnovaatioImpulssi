@@ -1,5 +1,6 @@
 package InnovaatioImpulssi.InnovaatiImpulssiLippu.web;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RestController;
 
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.Lippu;
@@ -38,13 +39,13 @@ public class LippuController {
   }
 
   @PostMapping
-  public ResponseEntity<Lippu> saveLippu(@RequestBody Lippu lippu) {
+  public ResponseEntity<Lippu> saveLippu(@Valid @RequestBody Lippu lippu) {
     Lippu uusiLippu = service.saveLippu(lippu);
     return ResponseEntity.status(HttpStatus.CREATED).body(uusiLippu);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Lippu> updateLippu(@PathVariable Long id,
+  public ResponseEntity<Lippu> updateLippu(@Valid @PathVariable Long id,
       @RequestBody Lippu lippuBody) {
     Lippu updatedLippu = service.updateLippu(id, lippuBody);
     return ResponseEntity.ok(updatedLippu);
