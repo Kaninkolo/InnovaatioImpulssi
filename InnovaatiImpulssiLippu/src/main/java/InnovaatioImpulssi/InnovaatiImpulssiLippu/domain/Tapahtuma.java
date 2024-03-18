@@ -10,6 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Tapahtuma {
@@ -18,14 +21,20 @@ public class Tapahtuma {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long tapahtumaId;
 
+  @NotNull
   private Date pvm;
+
+  @NotBlank
   private String sijainti;
+
+  @NotBlank
   private String kuvaus;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "tapahtuma")
   @JsonManagedReference
   private List<LippuTyyppi> lipputyypit;
 
+  @Min(value = 0, message="Lippuja oltava enemmän kuin 0")
   private int lippumaara;
 
   //TODO: private  int maxLiput;
