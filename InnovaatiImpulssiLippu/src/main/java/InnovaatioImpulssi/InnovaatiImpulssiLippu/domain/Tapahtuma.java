@@ -3,13 +3,9 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.domain;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Tapahtuma {
@@ -26,9 +22,14 @@ public class Tapahtuma {
   @JsonManagedReference
   private List<LippuTyyppi> lipputyypit;
 
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "lippuId")
+  @JsonIgnore
+  private List<Lippu> liput;
+
   private int lippumaara;
 
-  //TODO: private  int maxLiput;
+  private  int maxLiput;
 
   public Tapahtuma(){}
 
@@ -85,6 +86,14 @@ public class Tapahtuma {
 
   public void setLipputyypit(List<LippuTyyppi> lipputyypit) {
     this.lipputyypit = lipputyypit;
+  }
+
+  public int getMaxLiput() {
+    return maxLiput;
+  }
+
+  public void setMaxLiput(int maxLiput) {
+    this.maxLiput = maxLiput;
   }
 
   @Override

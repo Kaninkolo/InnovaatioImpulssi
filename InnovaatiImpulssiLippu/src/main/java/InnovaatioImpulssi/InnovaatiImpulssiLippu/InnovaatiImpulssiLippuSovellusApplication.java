@@ -35,6 +35,7 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			tapahtuma1.setSijainti("Forssa");
 			tapahtuma1.setKuvaus("Konsertti");
 			tapahtuma1.setLippumaara(100);
+			tapahtuma1.setMaxLiput(100);
 			tapahtuma1 = tapatumaRepository.save(tapahtuma1);
 
 			LippuTyyppi lippuTyyppi = new LippuTyyppi();
@@ -49,6 +50,7 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			tapahtuma2.setSijainti("Imatra");
 			tapahtuma2.setKuvaus("Nykytaiteen Tapahtuma");
 			tapahtuma2.setLippumaara(150);
+			tapahtuma2.setMaxLiput(150);
 			tapahtuma2 = tapatumaRepository.save(tapahtuma2);
 
 			LippuTyyppi lippuTyyppiImatra = new LippuTyyppi();

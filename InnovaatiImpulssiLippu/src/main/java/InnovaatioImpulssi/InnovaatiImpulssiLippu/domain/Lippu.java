@@ -12,7 +12,7 @@ public class Lippu {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long lippuId;
 
-    @NotBlank
+   // @NotBlank Aiheuttaa Could not commit JPA transaction
     @ManyToOne
     @JoinColumn(name = "tyyppiId")
     @JsonManagedReference
@@ -35,6 +35,11 @@ public class Lippu {
 //    }
 
     //TODO: Lisää mille tapahtumalle ostetaan lippuja
+    @ManyToOne
+    @JoinColumn(name = "tapahtumaId")
+    private Tapahtuma tapahtuma;
+
+
 
     public OstoTapahtuma getOstotapahtuma() {
         return ostotapahtuma;
@@ -74,6 +79,14 @@ public class Lippu {
 
     public void setOstoTapahtuma(OstoTapahtuma ostotapahtuma) {
         this.ostotapahtuma = ostotapahtuma;
+    }
+
+    public Tapahtuma getTapahtuma() {
+        return tapahtuma;
+    }
+
+    public void setTapahtuma(Tapahtuma tapahtuma) {
+        this.tapahtuma = tapahtuma;
     }
 
     @Override

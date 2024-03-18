@@ -59,7 +59,7 @@ public class OstotapahtumaService {
                 Lippu lippu = new Lippu();
                 lippu.setLipputyyppi(lippuTyyppi);
                 lippu.setOstotapahtuma(uusiOstoTapahtuma);
-                //lippu.setTapahtuma(lippuMaaraReposta);
+                lippu.setTapahtuma(lippuMaaraReposta);
                 lippuRepository.save(lippu);
                 liput.add(lippu);
             }
@@ -77,6 +77,9 @@ public class OstotapahtumaService {
         return ostoTapahtumaRepository.findAll();
     }
 
+    //TODO: Ostotapahtuman poistaminen -> lippujen poistaminen jotka liittyy kyseiseen ostotapahtumaan
+    //TODO: Lippujen muokkaaminen -> ostotapahtuman poistaminen -> uuden ostotapahtuman luominen korjatuilla lipuilla.
+    //TODO: Useamman eri lipputyypin ostaminen yhdellä ostotapahtumalla
 
 //    public Optional<OstoTapahtuma> getLippuByOstotapahtuma(Long ostotapahtumaId){
 //        return lippuRepository.findByLippuAndOstotapahtuma_tilausnumeroId(ostotapahtumaId);
