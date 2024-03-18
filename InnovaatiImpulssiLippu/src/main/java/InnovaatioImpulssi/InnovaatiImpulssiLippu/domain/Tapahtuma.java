@@ -6,6 +6,15 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Tapahtuma {
@@ -14,22 +23,27 @@ public class Tapahtuma {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long tapahtumaId;
 
+  @NotNull
   private Date pvm;
+
+  @NotBlank
   private String sijainti;
+
+  @NotBlank
   private String kuvaus;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "tapahtuma")
   @JsonManagedReference
   private List<LippuTyyppi> lipputyypit;
 
-
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "lippuId")
-  @JsonIgnore
-  private List<Lippu> liput;
-
+  @Min(value = 0, message="Lippuja oltava enemmän kuin 0")
   private int lippumaara;
 
-  private  int maxLiput;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lippuId")
+    @JsonIgnore
+    private List<Lippu> liput;
+
+    private  int maxLiput;
 
   public Tapahtuma(){}
 

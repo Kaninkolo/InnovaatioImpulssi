@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-InnovaatiImpulssiLippuSovellusApplication<InnovaatiImpulssiLippu>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "InnovaatioImpulssi.InnovaatiImpulssiLippu.InnovaatiImpulssiLippuSovellusApplication",
+      "projectName": "InnovaatiImpulssiLippu",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

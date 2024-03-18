@@ -2,6 +2,8 @@ package InnovaatioImpulssi.InnovaatiImpulssiLippu.web;
 
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.TapatumaRepository;
 import InnovaatioImpulssi.InnovaatiImpulssiLippu.service.TapahtumaService;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -40,16 +42,14 @@ public class TapahtumaController {
         return tapahtumaService.getTapahtumaById(tapahtuma_id).orElseThrow(() -> new RuntimeException("tapahtumaa ei löydy"));
     }
 
-    //TODO: Validointi
     @PostMapping
-    public ResponseEntity<Tapahtuma> saveTapahtuma(@RequestBody Tapahtuma tapahtuma){
+    public ResponseEntity<Tapahtuma> saveTapahtuma(@Valid @RequestBody Tapahtuma tapahtuma){
         Tapahtuma savedTapahtuma = tapahtumaService.saveTapahtuma(tapahtuma);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTapahtuma);
     }
 
-    //TODO: Validointi
     @PutMapping("/{tapahtuma_id}")
-    public ResponseEntity<Tapahtuma> updateTapahtuma(@PathVariable Long tapahtuma_id, @RequestBody Tapahtuma tapahtumaBodi){
+    public ResponseEntity<Tapahtuma> updateTapahtuma(@PathVariable Long tapahtuma_id, @Valid @RequestBody Tapahtuma tapahtumaBodi){
         Tapahtuma updateTapahtuma = tapahtumaService.updateTapahtuma(tapahtuma_id, tapahtumaBodi);
         return ResponseEntity.ok(updateTapahtuma);
     }

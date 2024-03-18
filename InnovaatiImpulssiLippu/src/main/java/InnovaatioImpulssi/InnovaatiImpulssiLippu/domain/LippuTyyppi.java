@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class LippuTyyppi {
@@ -29,8 +31,10 @@ public class LippuTyyppi {
     @JsonBackReference
     private List<Lippu> liput;
 
+    @NotBlank
     private String kuvaus;
 
+    @Min(value = 0, message="Lipun hinnan on oltava 0 tai suurempi")
     private BigDecimal hinta;
     // TODO: Pitäisikö lisätä boolean joka riippuu maksaako asiakas käteisellä? (Pyöristys lähimpään 5 senttiin?)
 
