@@ -4,6 +4,7 @@ import InnovaatioImpulssi.InnovaatiImpulssiLippu.domain.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.thymeleaf.expression.Arrays;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -19,11 +20,17 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 
 	@Bean
 	public CommandLineRunner myyjanLuonti(MyyjaRepository myyjarepository,
-										  TapatumaRepository tapatumaRepository,
-										  LippuRepository lippuRepository,
-										  LippuTyyppiRepository lippuTyyppiRepository,
-										  OstoTapahtumaRepository ostoTapahtumaRepository) {
+			TapatumaRepository tapatumaRepository,
+			LippuRepository lippuRepository,
+			LippuTyyppiRepository lippuTyyppiRepository,
+			OstoTapahtumaRepository ostoTapahtumaRepository,
+			UserRepository userRepository) {
 		return (args) -> {
+
+			AppUser u1 = new AppUser("kayttaja", "salasana1", "USER");
+			AppUser u2 = new AppUser("Masa", "salasana2", "ADMIN");
+			userRepository.save(u1);
+			userRepository.save(u2);
 
 			myyjarepository.save(new Myyja("Pekka Puupää"));
 
@@ -65,31 +72,30 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			lippuTyyppiImatra2.setKuvaus("Alennettu hinta");
 			lippuTyyppiRepository.save(lippuTyyppiImatra2);
 
-//			OstoTapahtuma ostoTapahtuma = new OstoTapahtuma();
-//			ostoTapahtuma.setLiput();
-//			Lippu lippu = new Lippu();
-//			lippu.setLipputyyppi(lippuTyyppi);
-//			lippu.setLippujenMaara(100);
-//			lippu = lippuRepository.save(lippu);
-//
-//			lippuTyyppi.setLiput(Collections.singletonList(lippu));
-//			lippuTyyppiRepository.save(lippuTyyppi);"
-
-
+			// OstoTapahtuma ostoTapahtuma = new OstoTapahtuma();
+			// ostoTapahtuma.setLiput();
+			// Lippu lippu = new Lippu();
+			// lippu.setLipputyyppi(lippuTyyppi);
+			// lippu.setLippujenMaara(100);
+			// lippu = lippuRepository.save(lippu);
+			//
+			// lippuTyyppi.setLiput(Collections.singletonList(lippu));
+			// lippuTyyppiRepository.save(lippuTyyppi);"
 
 		};
 	}
 
-//	@Bean
-//	public CommandLineRunner tapahtuma(TapatumaRepository tapahtumarepository) {
-//		return (args) -> {
-//			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//
-//			Tapahtuma tapahtuma = new Tapahtuma(null, sdf.parse("15-03-2022"), "Helsinki", "Kevätkonsertti",
-//					new ArrayList<>());
-//			tapahtumarepository.save(tapahtuma);
-//
-//		};
-//	}
+	// @Bean
+	// public CommandLineRunner tapahtuma(TapatumaRepository tapahtumarepository) {
+	// return (args) -> {
+	// SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	//
+	// Tapahtuma tapahtuma = new Tapahtuma(null, sdf.parse("15-03-2022"),
+	// "Helsinki", "Kevätkonsertti",
+	// new ArrayList<>());
+	// tapahtumarepository.save(tapahtuma);
+	//
+	// };
+	// }
 
 }
