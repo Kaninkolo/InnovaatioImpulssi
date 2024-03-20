@@ -27,8 +27,8 @@ public class InnovaatiImpulssiLippuSovellusApplication {
 			UserRepository userRepository) {
 		return (args) -> {
 
-			AppUser u1 = new AppUser("kayttaja", "salasana1", "USER");
-			AppUser u2 = new AppUser("Masa", "salasana2", "ADMIN");
+			AppUser u1 = new AppUser("user", "$2a$10$Ii9qBD9ZCTukaRwIzX8zzu/7tEmtrozDOQ05SUEYc.07l3wV94.T2", "USER");
+			AppUser u2 = new AppUser("admin", "$2a$10$GvrXyt.9U/JjTKhgbvCfC.p.1ULhYfIKwhxGBCCwFU.O3gIKawB4C", "ADMIN");
 			userRepository.save(u1);
 			userRepository.save(u2);
 
